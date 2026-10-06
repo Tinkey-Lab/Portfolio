@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     description: 'Award-winning UI/UX designer creating intuitive, accessible, and visually stunning digital products.',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image.svg',
         width: 1200,
         height: 630,
         alt: 'UI/UX Designer Portfolio',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'UI/UX Designer | Crafting Beautiful Digital Experiences',
     description: 'Award-winning UI/UX designer creating intuitive, accessible, and visually stunning digital products.',
-    images: ['/og-image.png'],
+    images: ['/og-image.svg'],
   },
   verification: {
     google: 'google-site-verification-code',
@@ -75,9 +75,8 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" sizes="any" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className="font-sans antialiased bg-white dark:bg-dark-950 text-dark-900 dark:text-dark-100">
