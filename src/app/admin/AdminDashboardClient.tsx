@@ -16,7 +16,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
-import { formatDate } from '@/lib/utils';
+import { formatDate, cn } from '@/lib/utils';
 
 interface DashboardStats {
   projectsCount: number;
