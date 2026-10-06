@@ -16,7 +16,6 @@ import {
   PenTool,
   Monitor,
   Tablet,
-  Briefcase,
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
@@ -42,6 +41,7 @@ const iconMap: Record<string, any> = {
   PenTool,
   Monitor,
   Tablet,
+  Briefcase,
 };
 
 export default function ServicesPageClient({ services, isAdmin }: ServicesPageClientProps) {

@@ -1,14 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { Github, Linkedin, Twitter, Dribbble, Behance, Instagram, Mail, ArrowRight } from 'lucide-react';
+import { Github, Linkedin, Twitter, Dribbble, Palette, Instagram, Mail, ArrowRight } from 'lucide-react';
 
 const socialLinks = [
   { name: 'GitHub', href: 'https://github.com', icon: Github },
   { name: 'LinkedIn', href: 'https://linkedin.com', icon: Linkedin },
   { name: 'Twitter', href: 'https://twitter.com', icon: Twitter },
   { name: 'Dribbble', href: 'https://dribbble.com', icon: Dribbble },
-  { name: 'Behance', href: 'https://behance.net', icon: Behance },
+  { name: 'Behance', href: 'https://behance.net', icon: Palette },
   { name: 'Instagram', href: 'https://instagram.com', icon: Instagram },
 ];
 
