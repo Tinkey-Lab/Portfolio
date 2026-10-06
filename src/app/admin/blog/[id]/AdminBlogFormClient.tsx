@@ -57,7 +57,7 @@ export default function AdminBlogFormClient({ post, isNew }: AdminBlogFormClient
     },
   });
 
-  const watchedTags = watch('tags', []);
+  const watchedTags = watch('tags') as string[];
   const watchedContent = watch('content', '');
   const watchedCoverImage = watch('coverImage', '');
 
