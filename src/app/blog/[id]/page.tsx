@@ -4,13 +4,7 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import BlogDetailClient from './BlogDetailClient';
 
-export async function generateStaticParams() {
-  const posts = await prisma.blogPost.findMany({
-    where: { published: true },
-    select: { id: true },
-  });
-  return posts.map((post) => ({ id: post.id }));
-}
+export const dynamic = 'force-dynamic';
 
 export default async function BlogDetailPage({
   params,

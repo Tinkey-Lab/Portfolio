@@ -50,7 +50,8 @@ export default function AdminTestimonialsClient({
     router.push(`/admin/testimonials?${params.toString()}`);
   };
 
-  const handleStatusFilter = (newStatus: string) => {
+  const handleStatusFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newStatus = e.target.value;
     const params = new URLSearchParams(searchParams.toString());
     if (newStatus) params.set('status', newStatus);
     else params.delete('status');

@@ -37,10 +37,17 @@ export async function GET() {
     if (!settings) {
       settings = await prisma.siteSettings.create({
         data: {
+          siteName: 'UI/UX Designer',
+          siteTagline: 'Crafting beautiful digital experiences',
+          heroTitle: 'Designing with Purpose',
+          heroSubtitle: 'I create intuitive, accessible, and visually stunning digital products.',
+          aboutTitle: 'About Me',
+          aboutContent: '',
           contactEmail: 'hello@example.com',
           socialLinks: {},
           seoTitle: 'UI/UX Designer | Portfolio',
           seoDescription: 'Award-winning UI/UX designer creating intuitive digital experiences.',
+          ogImage: '',
         },
       });
     }
@@ -67,11 +74,17 @@ export async function PUT(request: NextRequest) {
     if (!settings) {
       settings = await prisma.siteSettings.create({
         data: {
-          ...validatedData,
+          siteName: validatedData.siteName || 'UI/UX Designer',
+          siteTagline: validatedData.siteTagline || 'Crafting beautiful digital experiences',
+          heroTitle: validatedData.heroTitle || 'Designing with Purpose',
+          heroSubtitle: validatedData.heroSubtitle || 'I create intuitive, accessible, and visually stunning digital products.',
+          aboutTitle: validatedData.aboutTitle || 'About Me',
+          aboutContent: validatedData.aboutContent || '',
           contactEmail: validatedData.contactEmail || 'hello@example.com',
           socialLinks: validatedData.socialLinks || {},
           seoTitle: validatedData.seoTitle || 'UI/UX Designer | Portfolio',
-          seoDescription: validatedData.seoDescription || 'Award-winning UI/UX designer.',
+          seoDescription: validatedData.seoDescription || 'Award-winning UI/UX designer creating intuitive digital experiences.',
+          ogImage: validatedData.ogImage || '',
         },
       });
     } else {

@@ -9,6 +9,8 @@ declare module 'lucide-react' {
   }>;
   
   export const Layout: LucideIcon;
+export const LayoutDashboard: LucideIcon;
+  export const Layout: LucideIcon;
   export const Users: LucideIcon;
   export const GitBranch: LucideIcon;
   export const MousePointer2: LucideIcon;
@@ -29,6 +31,7 @@ declare module 'lucide-react' {
   export const Edit: LucideIcon;
   export const Trash2: LucideIcon;
   export const Eye: LucideIcon;
+  export const EyeOff: LucideIcon;
   export const ExternalLink: LucideIcon;
   export const ChevronLeft: LucideIcon;
   export const ChevronRight: LucideIcon;
@@ -70,4 +73,7 @@ declare module 'lucide-react' {
   export const FolderKanban: LucideIcon;
   export const TrendingUp: LucideIcon;
   export const Briefcase: LucideIcon;
+  export const Grid: LucideIcon;
+  export const List: LucideIcon;
+  export const Send: LucideIcon;
 }

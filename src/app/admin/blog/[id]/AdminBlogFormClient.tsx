@@ -79,7 +79,7 @@ export default function AdminBlogFormClient({ post, isNew }: AdminBlogFormClient
     if (e.key === 'Enter' && tagInput.trim()) {
       e.preventDefault();
       const newTags = [...watchedTags, tagInput.trim()];
-      setValue('tags', [...new Set(newTags)]);
+      setValue('tags', Array.from(new Set(newTags)));
       setTagInput('');
     }
   };

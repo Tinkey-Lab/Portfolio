@@ -65,7 +65,7 @@ export default function AdminServiceFormClient({ service, isNew }: AdminServiceF
     },
   });
 
-  const watchedFeatures = watch('features', []);
+  const watchedFeatures = watch('features') as string[];
 
   useEffect(() => {
     if (service) {
@@ -87,7 +87,7 @@ export default function AdminServiceFormClient({ service, isNew }: AdminServiceF
     if (e.key === 'Enter' && featureInput.trim()) {
       e.preventDefault();
       const newFeatures = [...watchedFeatures, featureInput.trim()];
-      setValue('features', [...new Set(newFeatures)]);
+      setValue('features', Array.from(new Set(newFeatures)));
       setFeatureInput('');
     }
   };

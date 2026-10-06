@@ -204,7 +204,7 @@ export default function AdminSettingsClient({ settings }: AdminSettingsClientPro
                   key={field.key}
                   label={field.label}
                   placeholder={field.placeholder}
-                  {...register(`socialLinks.${field.key}`)}
+                  {...register(`socialLinks.${field.key}` as any)}
                 />
               ))}
             </div>

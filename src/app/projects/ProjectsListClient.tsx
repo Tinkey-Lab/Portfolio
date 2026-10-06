@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
-import { Grid, List, ExternalLink, Github, Eye, ChevronLeft, ChevronRight, Filter } from 'lucide-react';
+import { Grid, List, ExternalLink, Github, Eye, ChevronLeft, ChevronRight, Filter, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent } from '@/components/ui/Card';

@@ -12,6 +12,8 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
+import { Textarea } from '@/components/ui/Textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Modal, ConfirmDialog } from '@/components/ui/Modal';
@@ -111,7 +113,7 @@ export default function AdminServicesClient({ services }: AdminServicesClientPro
     setEditForm({});
   };
 
-  const IconComponent = (name: string) => {
+  const IconComponent = ({ name }: { name: string }) => {
     // This would need actual icon imports - using a placeholder
     return <span className="text-primary-600 dark:text-primary-400">{name}</span>;
   };
@@ -228,7 +230,7 @@ export default function AdminServicesClient({ services }: AdminServicesClientPro
                           <ChevronDown className="w-5 h-5" />
                         </button>
                         <div className="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
-                          <IconComponent name={service.icon} />
+                          <IconComponent name={service.icon as string} />
                         </div>
                         <div className="min-w-0">
                           <Link href={`/admin/services/${service.id}`} className="font-medium text-dark-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400">

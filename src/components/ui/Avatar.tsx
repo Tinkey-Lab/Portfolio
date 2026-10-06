@@ -1,10 +1,9 @@
 'use client';
 
-import { ImageHTMLAttributes, forwardRef } from 'react';
+import { ImgHTMLAttributes, forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 
-interface AvatarProps extends ImageHTMLAttributes<HTMLImageElement> {
-  src?: string | null;
+interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
   alt?: string;
   fallback?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';

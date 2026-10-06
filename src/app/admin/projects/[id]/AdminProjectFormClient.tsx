@@ -5,6 +5,7 @@ import { useRouter, useParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import Image from 'next/image';
 import { Loader2, Save, X, Image as ImageIcon, Plus, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
@@ -76,8 +77,8 @@ export default function AdminProjectFormClient({ project, isNew }: AdminProjectF
     },
   });
 
-  const watchedTags = watch('tags', []);
-  const watchedImages = watch('images', []);
+  const watchedTags = watch('tags') as string[];
+  const watchedImages = watch('images') as string[];
 
   useEffect(() => {
     if (project) {
@@ -104,7 +105,7 @@ export default function AdminProjectFormClient({ project, isNew }: AdminProjectF
     if (e.key === 'Enter' && tagInput.trim()) {
       e.preventDefault();
       const newTags = [...watchedTags, tagInput.trim()];
-      setValue('tags', [...new Set(newTags)]);
+      setValue('tags', Array.from(new Set(newTags)));
       setTagInput('');
     }
   };
@@ -118,7 +119,7 @@ export default function AdminProjectFormClient({ project, isNew }: AdminProjectF
       try {
         new URL(imageInput.trim());
         const newImages = [...watchedImages, imageInput.trim()];
-        setValue('images', [...new Set(newImages)]);
+        setValue('images', Array.from(new Set(newImages)));
         setImageInput('');
         setShowImageModal(false);
       } catch {
@@ -131,33 +132,30 @@ export default function AdminProjectFormClient({ project, isNew }: AdminProjectF
     setValue('images', watchedImages.filter(i => i !== image));
   };
 
-  const handleThumbnailUpload = async () => {
+  const handleThumbnailUpload = () => {
     setUploading(true);
-    try {
-      const response = await fetch('/api/admin/upload', {
-        method: 'POST',
-        body: (() => {
-          const formData = new FormData();
-          const input = document.createElement('input');
-          input.type = 'file';
-          input.accept = 'image/*';
-          input.onchange = async () => {
-            if (input.files?.[0]) {
-              formData.append('file', input.files[0]);
-              formData.append('folder', 'projects/thumbnails');
-              const res = await fetch('/api/admin/upload', { method: 'POST', body: formData });
-              const data = await res.json();
-              if (data.url) setValue('thumbnail', data.url);
-            }
-          };
-          input.click();
-        })(),
-      });
-    } catch (error) {
-      console.error('Upload failed:', error);
-    } finally {
-      setUploading(false);
-    }
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = async () => {
+      if (input.files?.[0]) {
+        const formData = new FormData();
+        formData.append('file', input.files[0]);
+        formData.append('folder', 'projects/thumbnails');
+        try {
+          const res = await fetch('/api/admin/upload', { method: 'POST', body: formData });
+          const data = await res.json();
+          if (data.url) setValue('thumbnail', data.url);
+        } catch (error) {
+          console.error('Upload failed:', error);
+        } finally {
+          setUploading(false);
+        }
+      } else {
+        setUploading(false);
+      }
+    };
+    input.click();
   };
 
   const onSubmit = async (data: ProjectFormData) => {

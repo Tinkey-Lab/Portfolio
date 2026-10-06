@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { marked } from 'marked';
@@ -14,11 +15,19 @@ interface BlogDetailClientProps {
 }
 
 export default function BlogDetailClient({ post }: BlogDetailClientProps) {
-  const renderMarkdown = (text: string) => {
-    if (!text) return '';
-    const html = marked.parse(text);
-    return DOMPurify.sanitize(html);
-  };
+  const [renderedHtml, setRenderedHtml] = useState('');
+
+  useEffect(() => {
+    const renderMarkdown = async (text: string) => {
+      if (!text) {
+        setRenderedHtml('');
+        return;
+      }
+      const html = await marked.parse(text);
+      setRenderedHtml(DOMPurify.sanitize(html));
+    };
+    renderMarkdown(post.content);
+  }, [post.content]);
 
   return (
     <article className="min-h-screen pt-16">
@@ -80,7 +89,7 @@ export default function BlogDetailClient({ post }: BlogDetailClientProps) {
           </div>
         )}
 
-        <div className="prose prose-lg prose-dark max-w-none mb-12" dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }} />
+        <div className="prose prose-lg prose-dark max-w-none mb-12" dangerouslySetInnerHTML={{ __html: renderedHtml }} />
 
         <hr className="border-dark-200 dark:border-dark-800 my-12" />
 

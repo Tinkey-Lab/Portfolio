@@ -4,13 +4,7 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import ProjectDetailClient from './ProjectDetailClient';
 
-export async function generateStaticParams() {
-  const projects = await prisma.project.findMany({
-    where: { published: true },
-    select: { id: true },
-  });
-  return projects.map((project) => ({ id: project.id }));
-}
+export const dynamic = 'force-dynamic';
 
 export default async function ProjectDetailPage({
   params,

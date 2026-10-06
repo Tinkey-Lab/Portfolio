@@ -39,7 +39,7 @@ export default async function BlogListPage({
     }),
   ]);
 
-  const uniqueTags = [...new Set(allTags.flatMap(p => p.tags))];
+  const uniqueTags = Array.from(new Set(allTags.flatMap(p => p.tags)));
 
   return <BlogListClient
     posts={posts}

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { marked } from 'marked';
@@ -7,6 +8,7 @@ import DOMPurify from 'dompurify';
 import { ArrowLeft, ExternalLink, Github, Calendar, Tag, Eye, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent } from '@/components/ui/Card';
 import { formatDate, cn } from '@/lib/utils';
 
 interface ProjectDetailClientProps {
@@ -14,11 +16,19 @@ interface ProjectDetailClientProps {
 }
 
 export default function ProjectDetailClient({ project }: ProjectDetailClientProps) {
-  const renderMarkdown = (text: string) => {
-    if (!text) return '';
-    const html = marked.parse(text);
-    return DOMPurify.sanitize(html);
-  };
+  const [renderedCaseStudy, setRenderedCaseStudy] = useState('');
+
+  useEffect(() => {
+    const renderMarkdown = async (text: string) => {
+      if (!text) {
+        setRenderedCaseStudy('');
+        return;
+      }
+      const html = await marked.parse(text);
+      setRenderedCaseStudy(DOMPurify.sanitize(html));
+    };
+    renderMarkdown(project.caseStudy);
+  }, [project.caseStudy]);
 
   return (
     <article className="min-h-screen pt-16">
@@ -69,7 +79,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
         <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
           <div className="lg:col-span-2 space-y-12">
             {project.caseStudy && (
-              <section className="prose prose-dark max-w-none" dangerouslySetInnerHTML={{ __html: renderMarkdown(project.caseStudy) }} />
+              <section className="prose prose-dark max-w-none" dangerouslySetInnerHTML={{ __html: renderedCaseStudy }} />
             )}
 
             <section>

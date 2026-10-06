@@ -13,10 +13,17 @@ export default async function AdminSettingsPage() {
   if (!settings) {
     settings = await prisma.siteSettings.create({
       data: {
+        siteName: 'UI/UX Designer',
+        siteTagline: 'Crafting beautiful digital experiences',
+        heroTitle: 'Designing with Purpose',
+        heroSubtitle: 'I create intuitive, accessible, and visually stunning digital products.',
+        aboutTitle: 'About Me',
+        aboutContent: '',
         contactEmail: 'hello@example.com',
         socialLinks: {},
         seoTitle: 'UI/UX Designer | Portfolio',
         seoDescription: 'Award-winning UI/UX designer creating intuitive digital experiences.',
+        ogImage: '',
       },
     });
   }

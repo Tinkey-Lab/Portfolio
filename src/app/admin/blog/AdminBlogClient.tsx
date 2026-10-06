@@ -49,7 +49,8 @@ export default function AdminBlogClient({
     router.push(`/admin/blog?${params.toString()}`);
   };
 
-  const handleStatusFilter = (newStatus: string) => {
+  const handleStatusFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newStatus = e.target.value;
     const params = new URLSearchParams(searchParams.toString());
     if (newStatus) params.set('status', newStatus);
     else params.delete('status');

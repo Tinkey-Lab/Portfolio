@@ -19,7 +19,7 @@ export default async function AdminDashboardPage() {
     prisma.project.findMany({
       take: 5,
       orderBy: { createdAt: 'desc' },
-      select: { id: true, title: true, status: true, createdAt: true },
+      select: { id: true, title: true, published: true, createdAt: true },
     }),
     prisma.blogPost.findMany({
       take: 5,
